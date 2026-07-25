@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Pulse - Design Preview</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .preview-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #0B1220;
+            border-radius: 1rem;
+        }
+        
+        .preview-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+        
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .preview-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+        }
+        
+        .preview-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #6366F1 0%, #06B6D4 100%);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .preview-text {
+            color: #94A3B8;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-container">
+        <h1 class="preview-title">Page Pulse Design System Preview</h1>
+        
+        <div class="preview-grid">
+            <div class="preview-card">
+                <div class="preview-image">
+                    Hero Section
+                </div>
+                <p class="preview-text">Clean hero section with gradient text, elegant typography, and glassmorphism effects.</p>
+            </div>
+            
+            <div class="preview-card">
+                <div class="preview-image">
+                    URL Input
+                </div>
+                <p class="preview-text">Modern input field with glowing border effects and professional validation.</p>
+            </div>
+            
+            <div class="preview-card">
+                <div class="preview-image">
+                    Metric Cards
+                </div>
+                <p class="preview-text">Interactive cards with hover animations, status indicators, and smooth transitions.</p>
+            </div>
+            
+            <div class="preview-card">
+                <div class="preview-image">
+                    Loading States
+                </div>
+                <p class="preview-text">Beautiful loading animations with progress bars and skeleton screens.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+            <button onclick="window.location.href='index.html'" style="
+                padding: 0.75rem 1.5rem;
+                background: linear-gradient(135deg, #6366F1 0%, #06B6D4 100%);
+                color: white;
+                border: none;
+                border-radius: 0.5rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: transform 0.2s;
+            " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+                View Full Design →
+            </button>
+        </div>
+    </div>
+</body>
+</html>
