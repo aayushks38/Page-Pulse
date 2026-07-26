@@ -142,16 +142,6 @@ npm test
 
 ---
 
-## 📹 Loom Walkthrough Checklist
-
-When recording your 2-3 minute Loom demo for submission:
-1. **Show the Tool Working:** Analyze a live website (e.g. `https://google.com` or `https://github.com`) and show the smooth auto-scroll to the metrics cards.
-2. **Demonstrate Error Handling:** Enter an invalid URL or non-existent domain to show the clean error state card.
-3. **Code Walkthrough:** Highlight `Backend/parser.js` and `Backend/tests/parser.test.js` to explain your design decisions.
-4. **Footer Requirement:** Point out the mandatory credit line: `"Built for Digital Heroes Training Task"` linked to `digitalheroesco.com`.
-
----
-
 ## 📄 License & Credits
 
 - **Author:** [Aayush Kumar Sinha](https://github.com/aayushks38)
