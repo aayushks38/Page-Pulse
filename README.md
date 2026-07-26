@@ -1,6 +1,6 @@
 # Page Pulse ⚡
 
-> A modern, lightweight website auditing and performance analysis platform built for the **Digital Heroes Internship Qualification Task (Software Development / SDE Role)**.
+> A modern, lightweight website auditing and performance analysis platform built for the **Digital Heroes Internship (Software Development / SDE Role)**.
 
 ---
 
@@ -154,5 +154,6 @@ When recording your 2-3 minute Loom demo for submission:
 
 ## 📄 License & Credits
 
-Built for the **Digital Heroes Internship Training Task**.  
-Credit link: [Digital Heroes](https://digitalheroesco.com/)
+- **Author:** [Aayush Kumar Sinha](https://github.com/aayushks38)
+- **GitHub Repository:** [Page-Pulse](https://github.com/aayushks38/Page-Pulse)
+- **Built for:** [Digital Heroes Internship Training Task](https://digitalheroesco.com/)
