@@ -29,7 +29,6 @@ app.post("/analyze", async (req, res) => {
 
         const startTime = Date.now();
 
-        // Perform HTTP GET request with 10s timeout and browser-like User-Agent header
         const response = await axios.get(targetUrl, {
             timeout: 10000,
             headers: {
@@ -45,7 +44,7 @@ app.post("/analyze", async (req, res) => {
 
         const contentType = response.headers["content-type"] || "";
         
-        // Handle non-HTML responses gracefully
+
         if (!contentType.includes("text/html") && !contentType.includes("application/xhtml+xml")) {
             return res.status(400).json({ 
                 error: `Target URL returned non-HTML content (${contentType || 'unknown'}). Only web pages can be audited.` 
