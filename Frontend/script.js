@@ -1,4 +1,3 @@
-// DOM Elements
 const analyzeBtn = document.getElementById("analyze-btn");
 const urlInput = document.getElementById("url-input");
 const resultsContainer = document.getElementById("results-container");
@@ -17,14 +16,12 @@ const analyzedUrl = document.getElementById("analyzed-url");
 const timestamp = document.getElementById("timestamp");
 const resultsSection = document.getElementById("results-section");
 
-// API Backend Base URL (Detects local vs production deployed backend)
 const API_URL = window.BACKEND_URL || (
     (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
         ? "http://localhost:5000/analyze"
-        : "https://page-pulse-backend.onrender.com/analyze" // Replace with your live Render backend URL after deploying Backend
+        : "https://page-pulse-api-ticj.onrender.com/" 
 );
 
-// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     initializeEventListeners();
 });
@@ -56,7 +53,6 @@ function validateInput() {
         return;
     }
     
-    // Allow raw domains without scheme for user convenience
     if (!/^https?:\/\//i.test(url)) {
         url = "https://" + url;
     }
@@ -86,7 +82,6 @@ async function analyzeWebsite() {
         return;
     }
 
-    // Auto-prepend https:// if user omitted protocol
     if (!/^https?:\/\//i.test(rawUrl)) {
         rawUrl = "https://" + rawUrl;
         urlInput.value = rawUrl;
@@ -102,7 +97,6 @@ async function analyzeWebsite() {
     statusBadge.textContent = "Analyzing";
     statusBadge.style.background = "#ff9800";
 
-    // Auto-scroll down to results section
     scrollToResults();
 
     try {
@@ -155,7 +149,6 @@ function showError(message) {
 function displayResults(data, url) {
     loadingState.classList.remove('visible');
     
-    // Show stats preview bar
     statsPreview.classList.add('visible');
     
     resultsGrid.innerHTML = "";
