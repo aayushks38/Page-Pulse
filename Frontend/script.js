@@ -15,21 +15,10 @@ const copyBtn = document.getElementById("copy-btn");
 const statusBadge = document.getElementById("status-badge");
 const analyzedUrl = document.getElementById("analyzed-url");
 const timestamp = document.getElementById("timestamp");
+const resultsSection = document.getElementById("results-section");
 
-// Sample report data
-const sampleReport = {
-    status: 200,
-    responseTime: 243,
-    title: "Digital Heroes | Frontend Engineering Training",
-    metaDescription: "Premium training program for frontend developers",
-    h1Count: 1,
-    imagesMissingAlt: 2,
-    wordCount: 1250,
-    ssl: true,
-    mobileFriendly: true,
-    loadingSpeed: "fast",
-    seoScore: 85
-};
+// API Backend Base URL
+const API_URL = "http://localhost:5000/analyze";
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -57,74 +46,91 @@ function initializeEventListeners() {
 }
 
 function validateInput() {
-    const url = urlInput.value.trim();
+    let url = urlInput.value.trim();
     if (url === "") {
         urlInput.style.borderColor = "";
         return;
     }
     
-    if (validateURL(url, false)) {
+    // Allow raw domains without scheme for user convenience
+    if (!/^https?:\/\//i.test(url)) {
+        url = "https://" + url;
+    }
+
+    if (isValidHttpUrl(url)) {
         urlInput.style.borderColor = "#4caf50";
     } else {
         urlInput.style.borderColor = "#d32f2f";
     }
 }
 
-function validateURL(url, showAlert = true) {
-    if (url === "") {
-        if (showAlert) showToast("Please enter a website URL", "error");
-        return false;
-    }
-
+function isValidHttpUrl(stringUrl) {
     try {
-        const parsedUrl = new URL(url);
-        if (!parsedUrl.protocol.match(/^https?:$/)) {
-            if (showAlert) showToast("Please enter a valid HTTP or HTTPS URL", "error");
-            return false;
-        }
-        return true;
+        const parsed = new URL(stringUrl);
+        return parsed.protocol === "http:" || parsed.protocol === "https:";
     } catch {
-        if (showAlert) showToast("Please enter a valid URL", "error");
         return false;
     }
 }
 
 async function analyzeWebsite() {
-    const url = urlInput.value.trim();
-    
-    if (!validateURL(url)) return;
-    
+    let rawUrl = urlInput.value.trim();
+
+    if (!rawUrl) {
+        showToast("Please enter a website URL", "error");
+        urlInput.focus();
+        return;
+    }
+
+    // Auto-prepend https:// if user omitted protocol
+    if (!/^https?:\/\//i.test(rawUrl)) {
+        rawUrl = "https://" + rawUrl;
+        urlInput.value = rawUrl;
+    }
+
+    if (!isValidHttpUrl(rawUrl)) {
+        showToast("Please enter a valid HTTP or HTTPS URL", "error");
+        return;
+    }
+
     showLoading();
-    analyzedUrl.textContent = url;
+    analyzedUrl.textContent = rawUrl;
     statusBadge.textContent = "Analyzing";
-    
+    statusBadge.style.background = "#ff9800";
+
+    // Auto-scroll down to results section
+    scrollToResults();
+
     try {
-        // Real API call
-        const response = await fetch("http://localhost:5000/analyze", {
+        const response = await fetch(API_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ url })
+            body: JSON.stringify({ url: rawUrl })
         });
-        
-        if (!response.ok) {
-            throw new Error("API call failed");
-        }
-        
+
         const data = await response.json();
-        
-        // Update status badge
-        statusBadge.textContent = data.status === 200 ? "Completed" : "Error";
-        statusBadge.style.background = data.status === 200 ? "#4caf50" : "#d32f2f";
-        
-        displayResults(data, url);
-        
+
+        if (!response.ok) {
+            throw new Error(data.error || `Server error (${response.status})`);
+        }
+
+        statusBadge.textContent = data.status >= 200 && data.status < 300 ? "Completed" : `Status ${data.status}`;
+        statusBadge.style.background = data.status >= 200 && data.status < 300 ? "#4caf50" : "#d32f2f";
+
+        displayResults(data, rawUrl);
+
     } catch (err) {
-        // Use sample data on error
-        setTimeout(() => {
-            statusBadge.textContent = "Completed";
-            statusBadge.style.background = "#4caf50";
-            displayResults(sampleReport, url);
-        }, 1500);
+        console.error("Audit Request Error:", err);
+        statusBadge.textContent = "Failed";
+        statusBadge.style.background = "#d32f2f";
+        
+        showError(err.message || "Unable to connect to PagePulse backend. Make sure the server is running on http://localhost:5000.");
+    }
+}
+
+function scrollToResults() {
+    if (resultsSection) {
+        resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 }
 
@@ -139,81 +145,95 @@ function showError(message) {
     loadingState.classList.remove('visible');
     resultsContainer.classList.remove('visible');
     errorState.classList.add('visible');
+    scrollToResults();
 }
 
 function displayResults(data, url) {
     loadingState.classList.remove('visible');
     
-    // Show stats preview
+    // Show stats preview bar
     statsPreview.classList.add('visible');
     
     resultsGrid.innerHTML = "";
-    
+
+    const titleDisplay = data.title || "No title found";
+
     const metrics = [
         {
             title: "HTTP Status",
             value: data.status,
-            description: data.status === 200 ? "Website is accessible" : "Website may be down",
+            description: data.status >= 200 && data.status < 300 ? "Website is accessible" : "Target returned error status",
             icon: "fas fa-server",
-            type: data.status === 200 ? "good" : "error"
+            type: data.status >= 200 && data.status < 300 ? "good" : "error",
+            isText: false
         },
         {
             title: "Response Time",
             value: `${data.responseTime}ms`,
             description: data.responseTime < 300 ? "Excellent speed" : 
-                       data.responseTime < 800 ? "Average speed" : "Slow loading",
+                       data.responseTime < 800 ? "Average speed" : "Slow response time",
             icon: "fas fa-tachometer-alt",
-            type: data.responseTime < 300 ? "good" : data.responseTime < 800 ? "warning" : "error"
+            type: data.responseTime < 300 ? "good" : data.responseTime < 800 ? "warning" : "error",
+            isText: false
         },
         {
             title: "Page Title",
-            value: data.title.substring(0, 30) + (data.title.length > 30 ? "..." : ""),
-            description: `${data.title.length} characters`,
+            value: titleDisplay,
+            description: titleDisplay !== "No title found" ? `${titleDisplay.length} characters` : "Add page title",
             icon: "fas fa-heading",
-            type: data.title.length >= 50 && data.title.length <= 60 ? "good" : "warning"
+            type: titleDisplay !== "No title found" && titleDisplay.length >= 10 && titleDisplay.length <= 70 ? "good" : "warning",
+            isText: true
         },
         {
             title: "Meta Description",
             value: data.metaDescription ? "Found" : "Missing",
-            description: data.metaDescription ? `${data.metaDescription.length} characters` : "Add meta description",
+            description: data.metaDescription ? `${data.metaDescription.length} characters` : "Add meta description tag",
             icon: "fas fa-file-alt",
-            type: data.metaDescription ? (data.metaDescription.length >= 120 && data.metaDescription.length <= 155 ? "good" : "warning") : "error"
+            type: data.metaDescription ? (data.metaDescription.length >= 50 && data.metaDescription.length <= 160 ? "good" : "warning") : "error",
+            isText: false
         },
         {
             title: "H1 Tags",
             value: data.h1Count,
-            description: data.h1Count === 1 ? "Perfect - exactly one H1" : 
-                       data.h1Count > 1 ? "Multiple H1 tags" : "No H1 tags found",
+            description: data.h1Count === 1 ? "Optimal - single H1 tag" : 
+                       data.h1Count > 1 ? "Multiple H1 tags found" : "No H1 tags found",
             icon: "fas fa-h-square",
-            type: data.h1Count === 1 ? "good" : "warning"
+            type: data.h1Count === 1 ? "good" : "warning",
+            isText: false
         },
         {
             title: "Missing Alt Text",
             value: data.imagesMissingAlt,
-            description: data.imagesMissingAlt === 0 ? "All images have alt text" : 
-                       `${data.imagesMissingAlt} images need alt attributes`,
+            description: data.imagesMissingAlt === 0 ? "All images have alt attributes" : 
+                       `${data.imagesMissingAlt} images missing alt text`,
             icon: "fas fa-image",
-            type: data.imagesMissingAlt === 0 ? "good" : "warning"
+            type: data.imagesMissingAlt === 0 ? "good" : "warning",
+            isText: false
         },
         {
             title: "Word Count",
-            value: data.wordCount.toLocaleString(),
-            description: data.wordCount >= 300 ? "Good content depth" : "Consider adding more content",
+            value: (data.wordCount || 0).toLocaleString(),
+            description: data.wordCount >= 300 ? "Good content length" : "Consider expanding content",
             icon: "fas fa-font",
-            type: data.wordCount >= 300 ? "good" : "warning"
+            type: data.wordCount >= 300 ? "good" : "warning",
+            isText: false
         },
         {
             title: "SEO Score",
-            value: data.seoScore || "N/A",
-            description: "Overall SEO health",
+            value: `${data.seoScore || 0}/100`,
+            description: "Overall SEO health calculation",
             icon: "fas fa-chart-line",
-            type: "info"
+            type: data.seoScore >= 75 ? "good" : data.seoScore >= 50 ? "warning" : "error",
+            isText: false
         }
     ];
     
     metrics.forEach((metric, index) => {
         const card = document.createElement("div");
         card.className = `metric-card ${metric.type}`;
+        
+        const valueClass = metric.isText ? "metric-value text-value" : "metric-value";
+        
         card.innerHTML = `
             <div class="metric-header">
                 <div class="metric-icon">
@@ -221,24 +241,24 @@ function displayResults(data, url) {
                 </div>
                 <h3 class="metric-title">${metric.title}</h3>
             </div>
-            <div class="metric-value">${metric.value}</div>
+            <div class="${valueClass}" title="${metric.isText ? metric.value : ''}">${metric.value}</div>
             <p class="metric-description">${metric.description}</p>
             <div class="metric-trend">
-                <i class="fas fa-arrow-trend-up"></i>
-                <span>${metric.type === 'good' ? '✓ Good' : metric.type === 'warning' ? '⚠ Check' : metric.type === 'error' ? '✗ Issue' : 'Info'}</span>
+                <i class="fas fa-chart-line"></i>
+                <span>${metric.type === 'good' ? '✓ Good' : metric.type === 'warning' ? '⚠ Check' : '✗ Issue'}</span>
             </div>
         `;
         
         setTimeout(() => {
             resultsGrid.appendChild(card);
-        }, index * 50);
+        }, index * 40);
     });
     
     updateTimestamp();
     
     setTimeout(() => {
         resultsContainer.classList.add('visible');
-    }, metrics.length * 50 + 100);
+    }, metrics.length * 40 + 50);
 }
 
 function updateTimestamp() {
@@ -254,26 +274,38 @@ function updateTimestamp() {
 }
 
 function exportReport() {
-    showToast("Exporting report...", "success");
+    const reportData = {
+        url: analyzedUrl.textContent,
+        timestamp: timestamp.textContent,
+        status: statusBadge.textContent
+    };
+    const blob = new Blob([JSON.stringify(reportData, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `pagepulse-report-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast("Report exported as JSON!", "success");
 }
 
 function shareResults() {
     if (navigator.share) {
         navigator.share({
-            title: 'Page Pulse Report',
-            text: 'Check out this website analysis',
+            title: 'Page Pulse Audit Report',
+            text: `Audit report for ${analyzedUrl.textContent}`,
             url: window.location.href
         }).catch(() => showToast("Copied to clipboard!", "success"));
     } else {
         navigator.clipboard.writeText(window.location.href);
-        showToast("Copied to clipboard!", "success");
+        showToast("Copied report link!", "success");
     }
 }
 
 function copyReport() {
-    const text = `Page Pulse Analysis Report\n${analyzedUrl.textContent}\n${timestamp.textContent}`;
+    const text = `Page Pulse Audit Report\nURL: ${analyzedUrl.textContent}\nDate: ${timestamp.textContent}`;
     navigator.clipboard.writeText(text);
-    showToast("Report copied!", "success");
+    showToast("Summary copied to clipboard!", "success");
 }
 
 function showToast(message, type = "info") {
@@ -293,6 +325,7 @@ function showToast(message, type = "info") {
         border-radius: 4px;
         z-index: 2000;
         font-weight: 500;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     `;
     
     document.body.appendChild(toast);

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Pulse | Website Analysis Tool</title>
-    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -19,24 +18,25 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
                 <h1>Analyze Any Website</h1>
                 <p class="hero-subtitle">Get instant insights about your website's performance</p>
                 
                 <!-- URL Input Section -->
                 <div class="input-section">
                     <div class="input-container">
-                        <div class="input-icon">
-                            <i class="fas fa-link"></i>
+                        <div class="input-wrapper">
+                            <i class="fas fa-link input-icon"></i>
+                            <input 
+                                type="url" 
+                                id="url-input" 
+                                placeholder="https://example.com" 
+                                aria-label="Website URL"
+                            >
                         </div>
-                        <input 
-                            type="url" 
-                            id="url-input" 
-                            placeholder="https://example.com" 
-                            aria-label="Website URL"
-                        >
                         <button id="analyze-btn" class="analyze-btn">
                             <i class="fas fa-search"></i>
                             Analyze
@@ -62,9 +62,9 @@
                         <div class="stat-label">SEO Metrics</div>
                     </div>
                 </div>
-        </div>
-    </section>
-        
+            </div>
+        </section>
+            
         <!-- Results Section -->
         <section class="section results-section" id="results-section">
             <div class="container">
@@ -146,6 +146,7 @@
                 </div>
             </div>
         </section>
+    </main>
     
     <!-- Footer -->
     <footer class="footer">
@@ -161,7 +162,7 @@
             <div class="footer-links">
                 <a href="https://digitalheroesco.com/" target="_blank" class="footer-link">
                     <i class="fas fa-graduation-cap"></i>
-                    Digital Heroes Training
+                    Built for Digital Heroes Training Task
                 </a>
                 <a href="https://github.com/" target="_blank" class="footer-link">
                     <i class="fab fa-github"></i>
