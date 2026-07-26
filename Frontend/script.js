@@ -17,8 +17,12 @@ const analyzedUrl = document.getElementById("analyzed-url");
 const timestamp = document.getElementById("timestamp");
 const resultsSection = document.getElementById("results-section");
 
-// API Backend Base URL
-const API_URL = "http://localhost:5000/analyze";
+// API Backend Base URL (Detects local vs production deployed backend)
+const API_URL = window.BACKEND_URL || (
+    (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+        ? "http://localhost:5000/analyze"
+        : "https://page-pulse-backend.onrender.com/analyze" // Replace with your live Render backend URL after deploying Backend
+);
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
