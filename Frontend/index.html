@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Pulse | Professional SEO Analysis Tool</title>
+    <title>Page Pulse | Website Analysis Tool</title>
     
     <link rel="stylesheet" href="style.css">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <meta name="description" content="Professional SEO and webpage analysis tool for instant website audits">
 </head>
 <body>
     <!-- Header -->
@@ -25,9 +22,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Analyze Any Website Instantly</h1>
-                <p class="hero-subtitle">Get professional SEO insights with enterprise-grade analysis. Enter any URL and receive a comprehensive audit report in seconds.</p>
+                <h1>Analyze Any Website</h1>
+                <p class="hero-subtitle">Get instant insights about your website's performance</p>
                 
                 <!-- URL Input Section -->
                 <div class="input-section">
@@ -40,23 +36,19 @@
                             id="url-input" 
                             placeholder="https://example.com" 
                             aria-label="Website URL"
-                            autocomplete="off"
                         >
-                        <div class="input-hint">
-                            <span>Enter full URL including https://</span>
-                        </div>
+                        <button id="analyze-btn" class="analyze-btn">
+                            <i class="fas fa-search"></i>
+                            Analyze
+                        </button>
                     </div>
-                    
-                    <button id="analyze-btn" class="analyze-btn" aria-label="Analyze website">
-                        <span class="btn-text">Analyze Website</span>
-                        <span class="btn-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </span>
-                    </button>
+                    <div class="input-hint">
+                        <span>Enter full URL including https://</span>
+                    </div>
                 </div>
                 
-                <!-- Stats Preview -->
-                <div class="stats-preview">
+                <!-- Stats Preview - Hidden until after analysis -->
+                <div class="stats-preview" id="stats-preview">
                     <div class="stat-item">
                         <div class="stat-value">99.9%</div>
                         <div class="stat-label">Uptime Accuracy</div>
@@ -70,7 +62,6 @@
                         <div class="stat-label">SEO Metrics</div>
                     </div>
                 </div>
-            </div>
         </div>
     </section>
         
@@ -78,8 +69,8 @@
         <section class="section results-section" id="results-section">
             <div class="container">
                 <div class="section-title">
-                    <h2>Audit Report</h2>
-                    <p class="section-subtitle">Comprehensive analysis of your website's performance and SEO health</p>
+                    <h2>Analysis Results</h2>
+                    <p class="section-subtitle">Comprehensive website metrics and insights</p>
                 </div>
                 
                 <!-- Loading State -->
@@ -164,7 +155,7 @@
                     <i class="fas fa-heartbeat"></i>
                     <span>Page<span class="logo-accent">Pulse</span></span>
                 </div>
-                <p class="footer-tagline">Professional SEO analysis for digital heroes</p>
+                <p class="footer-tagline">Revolutionary Website Analysis Tool</p>
             </div>
             
             <div class="footer-links">
@@ -178,13 +169,13 @@
                 </a>
                 <a href="#" class="footer-link">
                     <i class="fas fa-user"></i>
-                    Made by <span id="author-name">Your Name</span>
+                    Made by <span id="author-name">Aayush Kumar Sinha</span>
                 </a>
             </div>
             
             <div class="footer-copyright">
                 <p>© 2026 Page Pulse. All rights reserved.</p>
-                <p class="footer-note">Professional SEO analysis tool for digital heroes</p>
+                <p class="footer-note">Professional website analysis platform</p>
             </div>
         </div>
     </footer>

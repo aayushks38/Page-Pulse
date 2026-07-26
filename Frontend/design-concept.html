@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Pulse - Design Concept</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: monospace;
+            background: #faf7f2;
+            color: #2a2a2a;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .concept-title {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .concept-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, #4a90e2, #e24a90);
+        }
+        
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .concept-card {
+            background: white;
+            padding: 2rem;
+            border: 1px solid rgba(42, 42, 42, 0.1);
+            position: relative;
+        }
+        
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 1px solid rgba(74, 144, 226, 0.2);
+            pointer-events: none;
+        }
+        
+        .concept-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            color: #4a90e2;
+        }
+        
+        .concept-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .color-swatch {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .color {
+            width: 60px;
+            height: 60px;
+            border: 1px solid rgba(42, 42, 42, 0.1);
+            position: relative;
+        }
+        
+        .color::after {
+            content: attr(data-hex);
+            position: absolute;
+            bottom: -1.5rem;
+            left: 0;
+            right: 0;
+            font-size: 0.75rem;
+            text-align: center;
+            color: #666;
+        }
+        
+        .color-primary { background: #4a90e2; }
+        .color-secondary { background: #e24a90; }
+        .color-accent { background: #4ae2b3; }
+        .color-background { background: #faf7f2; }
+        .color-text { background: #2a2a2a; }
+        
+        .preview-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: #2a2a2a;
+            border: 1px solid #2a2a2a;
+            text-decoration: none;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .preview-button:hover {
+            background: rgba(74, 144, 226, 0.05);
+            border-color: #4a90e2;
+            color: #4a90e2;
+            transform: translateY(-2px);
+        }
+        
+        .concept-note {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(74, 144, 226, 0.05);
+            border-left: 3px solid #4a90e2;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="concept-title">Page Pulse Design Concept</h1>
+        
+        <div class="concept-note">
+            <p><strong>Design Philosophy:</strong> "Data Canvas" - Where technical analysis meets artistic expression. Breaking away from conventional SaaS design patterns to create something truly unique.</p>
+        </div>
+        
+        <div class="concept-grid">
+            <div class="concept-card">
+                <h3>Monospace Aesthetic</h3>
+                <p>Using monospace typography to create a technical, data-focused feel that's both modern and unique. Not just another rounded sans-serif design.</p>
+            </div>
+            
+            <div class="concept-card">
+                <h3>Subtle Geometry</h3>
+                <p>Diagonal lines and geometric patterns in the background create visual interest without overwhelming the content. Inspired by data visualization and digital architecture.</p>
+            </div>
+            
+            <div class="concept-card">
+                <h3>Minimal Color Palette</h3>
+                <p>Limited to two main colors (#4a90e2 blue, #e24a90 pink) with neutral backgrounds. No gradients on text, just clean color usage.</p>
+            </div>
+            
+            <div class="concept-card">
+                <h3>Border-First Design</h3>
+                <p>Using borders and outlines instead of heavy shadows. Each element has subtle border treatments that create depth without traditional shadows.</p>
+            </div>
+            
+            <div class="concept-card">
+                <h3>Data as Art</h3>
+                <p>Transforming SEO metrics from dry numbers into visual compositions. The loading state features a scanning line effect, inspired by data streams.</p>
+            </div>
+            
+            <div class="concept-card">
+                <h3>Subtle Animations</h3>
+                <p>Minimal, purposeful animations that enhance the data flow concept rather than decorative effects. The progress bar uses a simple line scan.</p>
+            </div>
+        </div>
+        
+        <h3 style="margin: 2rem 0 1rem; font-weight: 300;">Color System</h3>
+        <div class="color-swatch">
+            <div class="color color-primary" data-hex="#4a90e2"></div>
+            <div class="color color-secondary" data-hex="#e24a90"></div>
+            <div class="color color-accent" data-hex="#4ae2b3"></div>
+            <div class="color color-background" data-hex="#faf7f2"></div>
+            <div class="color color-text" data-hex="#2a2a2a"></div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="index.html" class="preview-button">Experience the Design →</a>
+        </div>
+        
+        <div class="concept-note" style="margin-top: 3rem;">
+            <p><strong>What makes this different:</strong> No glassmorphism, no heavy gradients, no rounded corners overload, no stock illustrations, no predictable layouts. Instead: monospace typography, geometric patterns, border-focused design, and a conceptual approach to data as art.</p>
+        </div>
+    </div>
+</body>
+</html>

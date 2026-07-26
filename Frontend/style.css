@@ -1,275 +1,246 @@
 /* ========================================
-   PAGE PULSE - PROFESSIONAL SEO ANALYSIS TOOL
-   Inspired by Aventura Dental Arts aesthetic
-   Clean, professional, light-themed design
+   PAGE PULSE - CLEAN PROFESSIONAL DESIGN
+   White background, red accents, minimal
    ======================================== */
 
-/* ========================================
-   CSS RESET & BASE STYLES
-   ======================================== */
-*,
-*::before,
-*::after {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 html {
-    font-size: 16px;
     scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    color: #333;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
     background: #ffffff;
+    color: #333;
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* ========================================
    TYPOGRAPHY
    ======================================== */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4 {
     font-weight: 600;
     line-height: 1.2;
-    color: #1a1a1a;
     letter-spacing: -0.01em;
+    color: #1a1a1a;
 }
 
 h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    margin-bottom: 1.5rem;
     font-weight: 700;
-    letter-spacing: -0.02em;
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     margin-bottom: 1.5rem;
+    font-weight: 700;
 }
 
 h3 {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1a1a1a;
 }
 
 p {
+    max-width: 65ch;
     margin-bottom: 1rem;
     color: #666;
+    font-size: 1rem;
+    line-height: 1.8;
 }
 
 a {
-    color: #0066cc;
+    color: #d32f2f;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #004499;
+    color: #b71c1c;
 }
 
 /* ========================================
-   CONTAINER & LAYOUT
-   ======================================== */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-.section {
-    padding: 5rem 0;
-}
-
-.section-title {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.section-title h2 {
-    position: relative;
-    display: inline-block;
-    padding-bottom: 1rem;
-}
-
-.section-title h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #0066cc, #00aaff);
-    border-radius: 2px;
-}
-
-/* ========================================
-   HEADER & NAVIGATION
+   HEADER
    ======================================== */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-    z-index: 1000;
     padding: 1rem 0;
+    background: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+    z-index: 1000;
 }
 
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
 .logo {
+    font-size: 1.3rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    font-size: 1.5rem;
-    font-weight: 700;
+    gap: 0.5rem;
     color: #1a1a1a;
 }
 
-.logo-icon {
-    color: #0066cc;
-    font-size: 1.75rem;
+.logo i {
+    color: #d32f2f;
+    font-size: 1.5rem;
 }
 
 .logo-accent {
-    color: #0066cc;
+    color: #d32f2f;
 }
 
 /* ========================================
    HERO SECTION
    ======================================== */
 .hero {
-    padding: 12rem 0 6rem;
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding: 10rem 0 4rem;
     position: relative;
     overflow: hidden;
+    text-align: center;
+    background: #ffffff;
 }
 
 .hero::before {
     content: '';
     position: absolute;
-    top: 0;
+    bottom: 0;
+    left: 0;
     right: 0;
-    width: 40%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0, 102, 204, 0.03) 0%, rgba(0, 170, 255, 0.03) 100%);
-    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    height: 300px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><path fill="%23f5f5f5" d="M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z"/></svg>');
+    background-size: cover;
+    background-position: bottom;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content {
     max-width: 800px;
     margin: 0 auto;
-    text-align: center;
-    position: relative;
-    z-index: 1;
+    animation: fadeInDown 0.8s ease;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1 {
+    color: #1a1a1a;
+    margin-bottom: 1rem;
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: #666;
-    margin-bottom: 3rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 2rem;
+    font-weight: 400;
 }
 
 /* ========================================
-   URL INPUT SECTION
+   INPUT SECTION
    ======================================== */
 .input-section {
-    background: white;
-    border-radius: 16px;
-    padding: 2.5rem;
-    margin: 3rem auto;
-    max-width: 700px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.input-section:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+    max-width: 600px;
+    margin: 2rem auto;
+    position: relative;
 }
 
 .input-container {
     position: relative;
     margin-bottom: 1.5rem;
+    display: flex;
+    gap: 0.5rem;
 }
 
 .input-icon {
     position: absolute;
-    left: 1.25rem;
+    left: 1rem;
     top: 50%;
     transform: translateY(-50%);
     color: #999;
-    font-size: 1.25rem;
+    font-size: 1rem;
     z-index: 2;
 }
 
 #url-input {
-    width: 100%;
-    padding: 1.25rem 1.25rem 1.25rem 3.5rem;
-    font-size: 1.1rem;
+    flex: 1;
+    padding: 1rem 1rem 1rem 3rem;
+    font-size: 1rem;
     font-family: inherit;
-    background: #f8fafc;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
-    color: #333;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #1a1a1a;
     transition: all 0.3s ease;
     outline: none;
 }
 
 #url-input::placeholder {
-    color: #94a3b8;
+    color: #999;
 }
 
 #url-input:focus {
-    border-color: #0066cc;
-    background: white;
-    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    border-color: #d32f2f;
+    box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.1);
 }
 
 .input-hint {
-    margin-top: 0.75rem;
-    font-size: 0.875rem;
-    color: #94a3b8;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: #999;
     text-align: center;
 }
 
-/* ========================================
-   ANALYZE BUTTON
-   ======================================== */
 .analyze-btn {
-    width: 100%;
-    padding: 1.25rem 2rem;
-    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
     font-weight: 600;
-    background: linear-gradient(135deg, #0066cc 0%, #00aaff 100%);
+    background: #d32f2f;
     color: white;
     border: none;
-    border-radius: 12px;
+    border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
     position: relative;
     overflow: hidden;
 }
@@ -281,17 +252,17 @@ a:hover {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: 0.5s;
+    background: rgba(0, 0, 0, 0.1);
+    transition: left 0.4s ease;
+}
+
+.analyze-btn:hover {
+    background: #b71c1c;
+    transform: translateY(-2px);
 }
 
 .analyze-btn:hover::before {
     left: 100%;
-}
-
-.analyze-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 102, 204, 0.3);
 }
 
 .analyze-btn:active {
@@ -299,14 +270,33 @@ a:hover {
 }
 
 /* ========================================
-   STATS PREVIEW
+   STATS PREVIEW - HIDDEN BY DEFAULT
    ======================================== */
 .stats-preview {
-    display: flex;
+    display: none;
     justify-content: center;
-    gap: 3rem;
-    margin-top: 4rem;
+    gap: 2rem;
+    margin-top: 3rem;
     flex-wrap: wrap;
+    padding: 2rem 0;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.stats-preview.visible {
+    display: flex;
+    animation: slideInUp 0.6s ease;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .stat-item {
@@ -316,45 +306,39 @@ a:hover {
 }
 
 .stat-value {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    color: #0066cc;
+    color: #d32f2f;
     margin-bottom: 0.5rem;
-    position: relative;
-}
-
-.stat-value::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 2px;
-    background: linear-gradient(90deg, #0066cc, #00aaff);
 }
 
 .stat-label {
-    font-size: 0.875rem;
-    color: #666;
-    font-weight: 500;
+    font-size: 0.75rem;
+    color: #999;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 1px;
+    font-weight: 600;
 }
 
 /* ========================================
    RESULTS SECTION
    ======================================== */
 .results-section {
-    background: #f8fafc;
+    padding: 4rem 0;
+    position: relative;
+    background: #ffffff;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
 .section-subtitle {
-    font-size: 1.125rem;
+    font-size: 1rem;
     color: #666;
     max-width: 600px;
-    margin: 0 auto 3rem;
-    text-align: center;
+    margin: 0 auto;
 }
 
 /* ========================================
@@ -363,12 +347,16 @@ a:hover {
 .loading-state {
     display: none;
     text-align: center;
-    padding: 4rem 0;
+    padding: 3rem 0;
+}
+
+.loading-state.visible {
+    display: block;
 }
 
 .loading-spinner {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     margin: 0 auto 2rem;
     position: relative;
 }
@@ -378,8 +366,8 @@ a:hover {
     width: 100%;
     height: 100%;
     border: 3px solid transparent;
-    border-top-color: #0066cc;
     border-radius: 50%;
+    border-top-color: #d32f2f;
     animation: spin 1s linear infinite;
 }
 
@@ -389,9 +377,10 @@ a:hover {
 }
 
 .loading-title {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
     color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
 }
 
 .loading-subtitle {
@@ -402,25 +391,26 @@ a:hover {
 .progress-bar {
     width: 100%;
     max-width: 400px;
-    height: 4px;
-    background: #e2e8f0;
-    border-radius: 2px;
-    overflow: hidden;
+    height: 2px;
+    background: #f0f0f0;
     margin: 0 auto 3rem;
+    border-radius: 1px;
+    overflow: hidden;
+    position: relative;
 }
 
-.progress-fill {
-    width: 0%;
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    width: 40%;
     height: 100%;
-    background: linear-gradient(90deg, #0066cc, #00aaff);
-    border-radius: 2px;
-    animation: progressAnimation 2s ease-in-out infinite;
+    background: #d32f2f;
+    animation: progressMove 2s ease-in-out infinite;
 }
 
-@keyframes progressAnimation {
-    0% { width: 0%; }
-    50% { width: 100%; }
-    100% { width: 0%; }
+@keyframes progressMove {
+    0% { left: -40%; }
+    100% { left: 100%; }
 }
 
 /* ========================================
@@ -430,22 +420,25 @@ a:hover {
     display: none;
     max-width: 500px;
     margin: 0 auto;
-    padding: 3rem;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
     text-align: center;
-    border: 1px solid rgba(239, 68, 68, 0.2);
+    border: 1px solid #ffebee;
+    border-radius: 4px;
+    background: #ffebee;
+}
+
+.error-state.visible {
+    display: block;
 }
 
 .error-icon {
     font-size: 3rem;
-    color: #ef4444;
-    margin-bottom: 1.5rem;
+    color: #d32f2f;
+    margin-bottom: 1rem;
 }
 
 .error-title {
-    color: #ef4444;
+    color: #d32f2f;
     margin-bottom: 1rem;
 }
 
@@ -455,11 +448,11 @@ a:hover {
 }
 
 .retry-btn {
-    padding: 0.75rem 1.5rem;
-    background: #ef4444;
+    padding: 0.75rem 2rem;
+    background: #d32f2f;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -469,9 +462,8 @@ a:hover {
 }
 
 .retry-btn:hover {
-    background: #dc2626;
+    background: #b71c1c;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
 }
 
 /* ========================================
@@ -481,18 +473,33 @@ a:hover {
     display: none;
 }
 
+.results-container.visible {
+    display: block;
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .website-info-card {
-    background: white;
-    border-radius: 16px;
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
     padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+    margin-bottom: 3rem;
+    transition: all 0.3s ease;
 }
 
 .website-info-card:hover {
-    transform: translateY(-4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .card-header {
@@ -500,34 +507,36 @@ a:hover {
     align-items: center;
     gap: 1rem;
     margin-bottom: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .card-icon {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, #0066cc, #00aaff);
-    border-radius: 12px;
+    width: 45px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #d32f2f;
     color: white;
-    font-size: 1.5rem;
+    border-radius: 4px;
+    font-size: 1.25rem;
 }
 
 .card-title {
     flex: 1;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
+    color: #1a1a1a;
+    min-width: 150px;
 }
 
 .card-badge {
-    padding: 0.375rem 0.75rem;
-    background: linear-gradient(135deg, #10b981, #34d399);
+    padding: 0.35rem 0.75rem;
+    background: #4caf50;
     color: white;
-    border-radius: 20px;
-    font-size: 0.75rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
 }
 
 .card-content {
@@ -543,37 +552,37 @@ a:hover {
     align-items: center;
     gap: 0.5rem;
     color: #666;
-    font-size: 1rem;
+    font-size: 0.95rem;
+    font-family: monospace;
 }
 
 .website-url-display i {
-    color: #0066cc;
+    color: #d32f2f;
 }
 
 .analysis-timestamp {
-    color: #94a3b8;
-    font-size: 0.875rem;
+    color: #999;
+    font-size: 0.85rem;
 }
 
 /* ========================================
-   METRIC CARDS GRID
+   METRIC CARDS
    ======================================== */
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
     margin-bottom: 3rem;
 }
 
 .metric-card {
-    background: white;
-    border-radius: 16px;
-    padding: 1.5rem;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    padding: 2rem;
     position: relative;
-    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .metric-card::before {
@@ -582,193 +591,166 @@ a:hover {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #0066cc, #00aaff);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    height: 3px;
+    background: #d32f2f;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
 }
 
 .metric-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
 }
 
 .metric-card:hover::before {
-    opacity: 1;
+    transform: scaleX(1);
 }
 
 .metric-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
     margin-bottom: 1rem;
 }
 
 .metric-icon {
     width: 40px;
     height: 40px;
-    background: #f8fafc;
-    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #0066cc;
-    font-size: 1.25rem;
+    background: #f5f5f5;
+    border-radius: 4px;
+    color: #d32f2f;
+    font-size: 1.2rem;
 }
 
 .metric-title {
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    color: #666;
     flex: 1;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.5px;
+    color: #999;
 }
 
 .metric-value {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #d32f2f;
     margin-bottom: 0.5rem;
     line-height: 1;
 }
 
 .metric-description {
     color: #666;
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     line-height: 1.5;
     margin-bottom: 1rem;
 }
 
 .metric-trend {
-    padding-top: 0.75rem;
-    border-top: 1px solid #e2e8f0;
-    font-size: 0.875rem;
-    color: #666;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+    font-size: 0.85rem;
+    color: #999;
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-/* Metric card status colors */
-.metric-card.good .metric-icon {
-    color: #10b981;
-}
+/* Status colors */
+.metric-card.good .metric-value { color: #4caf50; }
+.metric-card.good::before { background: #4caf50; }
+.metric-card.good .metric-icon { color: #4caf50; }
 
-.metric-card.good::before {
-    background: linear-gradient(90deg, #10b981, #34d399);
-}
+.metric-card.warning .metric-value { color: #ff9800; }
+.metric-card.warning::before { background: #ff9800; }
+.metric-card.warning .metric-icon { color: #ff9800; }
 
-.metric-card.warning .metric-icon {
-    color: #f59e0b;
-}
-
-.metric-card.warning::before {
-    background: linear-gradient(90deg, #f59e0b, #fbbf24);
-}
-
-.metric-card.error .metric-icon {
-    color: #ef4444;
-}
-
-.metric-card.error::before {
-    background: linear-gradient(90deg, #ef4444, #f87171);
-}
-
-.metric-card.info .metric-icon {
-    color: #3b82f6;
-}
-
-.metric-card.info::before {
-    background: linear-gradient(90deg, #3b82f6, #60a5fa);
-}
+.metric-card.error .metric-value { color: #d32f2f; }
+.metric-card.error::before { background: #d32f2f; }
+.metric-card.error .metric-icon { color: #d32f2f; }
 
 /* ========================================
-   ACTIONS CONTAINER
+   ACTIONS
    ======================================== */
 .actions-container {
-    display: flex;
+    display: none;
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
     padding: 2rem 0;
 }
 
+.actions-container.visible {
+    display: flex;
+}
+
 .action-btn {
-    padding: 0.875rem 1.5rem;
-    background: white;
-    color: #333;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    color: #d32f2f;
+    border: 1px solid #d32f2f;
+    border-radius: 4px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.95rem;
+    font-family: inherit;
+    font-size: 0.9rem;
 }
 
 .action-btn:hover {
-    background: #f8fafc;
-    border-color: #cbd5e1;
+    background: #d32f2f;
+    color: white;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.export-btn:hover {
-    color: #10b981;
-    border-color: #a7f3d0;
-}
-
-.share-btn:hover {
-    color: #3b82f6;
-    border-color: #bfdbfe;
-}
-
-.copy-btn:hover {
-    color: #0066cc;
-    border-color: #b3d9ff;
-}
+.export-btn:hover { background: #4caf50; border-color: #4caf50; }
+.share-btn:hover { background: #2196f3; border-color: #2196f3; }
+.copy-btn:hover { background: #ff9800; border-color: #ff9800; }
 
 /* ========================================
    FOOTER
    ======================================== */
 .footer {
-    background: #1a1a1a;
-    color: white;
-    padding: 4rem 0 2rem;
-    margin-top: 4rem;
+    padding: 3rem 0;
+    border-top: 1px solid #f0f0f0;
+    background: #fafafa;
 }
 
 .footer-content {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
 .footer-brand {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .footer-logo {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: white;
+    gap: 0.5rem;
+    color: #1a1a1a;
 }
 
 .footer-logo i {
-    color: #00aaff;
+    color: #d32f2f;
 }
 
 .footer-tagline {
-    color: #94a3b8;
-    font-size: 1rem;
+    color: #666;
+    font-size: 0.95rem;
     max-width: 400px;
     margin: 0 auto;
 }
@@ -777,71 +759,62 @@ a:hover {
     display: flex;
     justify-content: center;
     gap: 2rem;
-    margin-bottom: 3rem;
+    margin: 1.5rem 0;
     flex-wrap: wrap;
 }
 
 .footer-link {
-    color: #cbd5e1;
+    color: #666;
     text-decoration: none;
+    font-size: 0.9rem;
     transition: color 0.3s ease;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
+    font-weight: 500;
 }
 
 .footer-link:hover {
-    color: white;
+    color: #d32f2f;
 }
 
 .footer-copyright {
     text-align: center;
-    color: #94a3b8;
-    font-size: 0.875rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #999;
+    font-size: 0.8rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f0f0f0;
 }
 
 .footer-note {
-    margin-top: 0.5rem;
-    font-style: italic;
-    opacity: 0.7;
+    margin-top: 0.3rem;
 }
 
 /* ========================================
    RESPONSIVE DESIGN
    ======================================== */
-
-/* Mobile */
 @media (max-width: 767px) {
-    .container {
-        padding: 0 1rem;
-    }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.3rem; }
     
-    .hero {
-        padding: 8rem 0 4rem;
-    }
+    .container { padding: 0 1rem; }
+    .header-container { padding: 0 1rem; }
     
-    h1 {
-        font-size: 2.5rem;
-    }
+    .hero { padding: 7rem 0 2rem; }
     
-    h2 {
-        font-size: 2rem;
-    }
-    
-    .input-section {
-        padding: 1.5rem;
-        margin: 2rem auto;
+    .input-container {
+        flex-direction: column;
+        gap: 0.75rem;
     }
     
     .stats-preview {
-        gap: 2rem;
+        gap: 1rem;
+        padding: 1.5rem 0;
     }
     
     .stat-item {
         min-width: 100px;
-        padding: 1rem;
+        padding: 1rem 0.5rem;
     }
     
     .results-grid {
@@ -850,66 +823,35 @@ a:hover {
     
     .actions-container {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
     }
     
     .action-btn {
         width: 100%;
-        max-width: 300px;
         justify-content: center;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 
-/* Tablet */
 @media (min-width: 768px) and (max-width: 1023px) {
     .results-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
-    .hero-content {
-        max-width: 90%;
-    }
 }
 
-/* Desktop */
 @media (min-width: 1024px) {
     .results-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1400px) {
+    .results-grid {
         grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-/* ========================================
-   UTILITY CLASSES
-   ======================================== */
-.hidden {
-    display: none !important;
-}
-
-.visible {
-    display: block !important;
-}
-
-.fade-in {
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.slide-up {
-    animation: slideUp 0.5s ease;
-}
-
-@keyframes slideUp {
-    from { 
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to { 
-        opacity: 1;
-        transform: translateY(0);
     }
 }
 
@@ -928,15 +870,13 @@ a:hover {
     border: 0;
 }
 
-/* Focus styles for keyboard navigation */
 button:focus-visible,
 input:focus-visible,
 a:focus-visible {
-    outline: 2px solid #0066cc;
+    outline: 2px solid #d32f2f;
     outline-offset: 2px;
 }
 
-/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -945,55 +885,5 @@ a:focus-visible {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
-    }
-}
-
-/* ========================================
-   CUSTOM SCROLLBAR
-   ======================================== */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f5f9;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
-}
-
-/* ========================================
-   PRINT STYLES
-   ======================================== */
-@media print {
-    .header,
-    .footer,
-    .actions-container {
-        display: none;
-    }
-    
-    .hero {
-        padding: 2rem 0;
-    }
-    
-    .results-section {
-        padding: 0;
-    }
-    
-    .metric-card {
-        break-inside: avoid;
-        box-shadow: none;
-        border: 1px solid #ddd;
-    }
-    
-    body {
-        background: white;
-        color: black;
     }
 }
