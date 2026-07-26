@@ -26,7 +26,7 @@ test("PagePulse Parser - Happy Path", () => {
     assert.equal(report.title, "Digital Heroes | Test Page");
     assert.equal(report.metaDescription, "This is a valid test description for SEO audit testing purposes.");
     assert.equal(report.h1Count, 1);
-    assert.equal(report.imagesMissingAlt, 1); // banner.jpg missing alt
+    assert.equal(report.imagesMissingAlt, 1);
     assert.ok(report.wordCount > 10, "Word count should count text in body");
     assert.ok(report.seoScore > 50, "SEO score should be high for valid HTML");
 });
