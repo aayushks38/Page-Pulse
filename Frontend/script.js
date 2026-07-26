@@ -19,7 +19,7 @@ const resultsSection = document.getElementById("results-section");
 const API_URL = window.BACKEND_URL || (
     (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
         ? "http://localhost:5000/analyze"
-        : "https://page-pulse-api-ticj.onrender.com/" 
+        : "https://page-pulse-api-ticj.onrender.com/analyze" 
 );
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -106,7 +106,15 @@ async function analyzeWebsite() {
             body: JSON.stringify({ url: rawUrl })
         });
 
-        const data = await response.json();
+        const contentType = response.headers.get("content-type") || "";
+        let data;
+
+        if (contentType.includes("application/json")) {
+            data = await response.json();
+        } else {
+            const rawText = await response.text();
+            throw new Error(`Server returned unexpected response (${response.status}). Please check API URL endpoint.`);
+        }
 
         if (!response.ok) {
             throw new Error(data.error || `Server error (${response.status})`);
